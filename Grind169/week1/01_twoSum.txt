@@ -1,3 +1,62 @@
-# Note, the  naive approach would be toq
+# Note, the  naive approach would be to do this:
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
 
-def 
+        return
+
+# Better Version but incorrect
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+
+        differences = {}
+
+        for i in range(len(nums)):
+            difference = target - num[i]
+            differences[difference] = i
+        
+        for i in range(len(nums)):
+            if nums[i] in differences:
+                return [i, differences[nums[i]]]
+
+        return
+
+# Final Version
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+
+        differences = {}
+
+        for i in range(len(nums)):
+            if nums[i] in differences:
+                return [i, differences[nums[i]]]
+
+            difference = target - nums[i]
+            differences[difference] = i
+        
+        return
+
+
+# test cases:
+# [5, 5], target : 10
+# [3, 12] target: 15
+# [1, 2, 10, 3, 4, 5, 19] target: 29

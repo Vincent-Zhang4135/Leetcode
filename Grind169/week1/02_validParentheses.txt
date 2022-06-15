@@ -1,0 +1,31 @@
+from collectiosn import deque
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = deque(deque)
+
+        pairs = {
+            '(' : ')',
+            '{' : '}',
+            '[' : ']'
+        }
+
+        for char in s:
+            if char in pairs.keys(): // if it is an opening parenthesis
+                stack.append(char)
+            else: // if it is a closing parenthesis
+                if not stack: return false
+                recent_parenthesis = stack.pop()
+                if pairs[recent_parenthesis] != char:
+                    return false
+        
+        return not stack
+
+# test cases
+# ((((
+# )
+# ]
+# {[{()}]()()}
+# 
+# {]
+# ([)]

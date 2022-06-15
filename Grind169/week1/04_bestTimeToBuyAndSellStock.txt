@@ -1,0 +1,43 @@
+# Naive Approach
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+
+        maxProfit = 0
+        for i in range(len(prices) - 1):
+            for j in range(i + 1, len(prices)):
+                profit = prices[j] - prices[i]
+                maxProfit = max(maxProfit, profit)
+        return maxProfit
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+    '''
+        Note: the two pointers in this case are "index" and "j"
+    '''
+        maxProfit = 0
+        i, j = 0, 1
+
+        end = len(prices)
+
+        while j < end:
+            profit = prices[j] - prices[index]
+            if profit < 0:
+                i = j
+                j += 1  #i write it out like this because it demonstrates more intution for why
+            else:
+                j += 1
+
+            maxProfit = max(maxProfit, profit)
+        
+        return maxProfit
+
+# test cases
+
+# 1.
+# [7, 1, 5, 3, 6, 4]
+# Return: 5
+
+#2.
+# [10, 9, 8, 7, 6, 5, 4]
+# Return: 0
