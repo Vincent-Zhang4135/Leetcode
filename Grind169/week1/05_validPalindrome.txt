@@ -1,0 +1,63 @@
+
+# approach 1 (more traditional C)
+import string
+from collections import deque 
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+
+        # create a set (accessible in O(1)) of the alphanumeric characters
+        alnums = set(string.ascii_lowercase)
+        alnums.update([str(i) for i in range(0, 10)])
+        
+        # strip string away from these alphanumeric characters
+        def strip_nonalnum(s):
+            ret = ""
+            for char in s:
+                if char in alnums:
+                    ret += char
+            return ret
+
+        # check to see if the reverse string is the same as the clean string
+        clean_str = strip_nonalnum(s.lower())
+        rev_str = clean_str[::-1]
+
+        return clean_str == rev_str
+
+
+
+# appraoch 2 (pythonic)
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        clean_str = ''.join([char.lower() if char.isalnum() else '' for char in s])
+        return clean_str == clean_str[::-1]
+
+# approach 3 (algorithmic good for demonstrating pointer and ascii knowledge)
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        def isalnum(char) -> bool:
+            return ('a' <= char.lower() <= 'z' or '0' <= char.lower() <= '9')
+
+        l,r = 0, len(s) - 1
+        while l < r:
+            if not isalnum(s[l]):
+                l += 1
+                continue
+            
+            if not isalnum(s[r]):
+                r += 1
+                continue
+
+            if s[l] != s[r]:
+                return False
+
+            l += 1
+            r -= 1
+        
+        return True
+
+# testcases
+# 'abccda'
+# 'AbcecDa'
+# ' r ; a1 c e c 1a!@r'
+# '435a5a34'

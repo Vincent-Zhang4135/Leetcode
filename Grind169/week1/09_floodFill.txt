@@ -1,0 +1,56 @@
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        
+        max_r = len(image)
+        max_c = len(image[0])
+
+        og = image[sr][sc]
+
+        if og == color:
+            return image
+
+        def fillGrid(og, sr, sc, color):
+            if 0 <= sr < max_r and 0 <= sc < max_c:
+                if image[sr][sc] == og:
+                    image[sr][sc] = color
+                    fillGrid(og, sr + 1, sc, color)
+                    fillGrid(og, sr - 1, sc, color)
+                    fillGrid(og, sr, sc + 1, color)
+                    fillGrid(og, sr, sc - 1, color)
+
+        fillGrid(og, sr, sc, color)
+
+        return image            
+
+# if we want to format it to more clearly demonstrate an understanding of the underlying base case:
+# consider writing it like this (even though logically code does the same thing):
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        
+        max_r = len(image)
+        max_c = len(image[0])
+
+        og = image[sr][sc]
+
+        if og == color:
+            return image
+
+        def fillGrid(og, sr, sc, color):
+            if 0 > sr or max_r <= sr or 0 > sc or max_c <= sc:
+                return
+            elif image[sr][sc] != og:
+                return
+
+            image[sr][sc] = color
+            fillGrid(og, sr + 1, sc, color)
+            fillGrid(og, sr - 1, sc, color)
+            fillGrid(og, sr, sc + 1, color)
+            fillGrid(og, sr, sc - 1, color)
+
+        fillGrid(og, sr, sc, color)
+
+        return image   
+
+#testcases
+# [[0, 0, 0], [0, 0, 0], [0, 0, 0]], [1][1], 0
+# [[1, 1, 1], [1, 1, 0], [1, 0, 1]], [1][1], 2

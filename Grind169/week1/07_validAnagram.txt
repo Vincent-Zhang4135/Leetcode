@@ -1,0 +1,53 @@
+
+# Naive approach (also not working T^T anyway LMAO)
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        matched = False
+        for i in range(len(s)):
+            for j in range(len(t)):
+                if s[i] == t[j]:
+                    t = t[:j] + t[j+1:]
+                    matched = True
+                    break
+            if not matched:
+                return False
+            
+            matched = False 
+        return not len(s)  
+
+# Utilizing hashmap (dictionary to acces keyvalue pairs at constant time)
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        instances = {}
+        for i in range(len(s)):
+            if s[i] not in instances:
+                instances[s[i]] = 1
+            else:
+                instances[s[i]] += 1
+        
+        for j in range(len(t)):
+            if t[j] not in instances:
+                return False
+            else:
+                instances[t[j]] -= 1
+
+        return not any(list(instances.values()))
+
+# May also consider just first checking if the lengths are equal
+# if it is equal then we can iterate through them to fill each others 
+# dictionary at the same time then check if the ending dictionarys are the same
+
+
+# O(1) space complexity ( but O(nlogn) time complexity):
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
+
+
+
+# testcases
+# "abc" "cba"
+# "aaaaaaaaaabc" "abc"
+# "abc" "aaaaaabc"
+# "abc" "eab"
