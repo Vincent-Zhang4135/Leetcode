@@ -43,4 +43,4 @@ class Solution:
         
         return max_sum
 
-# Divide and Conquer
+# Divide and Conque
