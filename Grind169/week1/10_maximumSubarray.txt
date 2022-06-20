@@ -1,0 +1,46 @@
+# Greedy Solution with converging pointers
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:  
+        curr_sum = sum(nums)
+
+        max_sum = 0
+
+        l = 0
+        r = len(nums) - 1
+
+        while l < r:
+            if nums[l] < nums[r]:
+                l -= 1
+                curr_sum -= nums[l]
+                max_sum = max(max_sum, curr_sum)
+            else:
+                r -= 1
+                curr_sum -= nums[r]
+            
+            max_sum = max(max_sum, curr_sum)
+
+        return max_sum
+
+# Greedy Solution
+
+import functools
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        maxSUm = float('-inf')
+        currSum = functools.reduce(lambda a, b: a+b, nums)
+
+        l, r = 0. len(nums) - 1
+
+        while l <= r:
+            if nums[l] < nums[r]:
+                curr_sum -= nums[l]  
+                l += 1
+            else:
+                curr_sum -= nums[r]
+                r -= 1
+            
+            max_sum = max(max_sum, curr_sum)
+        
+        return max_sum
+
+# Divide and Conquer
