@@ -1,0 +1,47 @@
+
+# one approach is to consider that the maxHeight of a balanced binary tree is
+# bounded by log_2(n + 1), where n is the number of nodes in the tree. If there are 
+# more levels than that bound, then our tree is not bounded
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        
+        global count
+        count = 0
+        
+        def countNodesHeight(root):
+            global count
+            
+            if not root:
+                return 0
+            else:
+                count += 1
+                return (max(countNodesHeight(root.left), countNodesHeight(root.right)) + 1)
+        
+        height = countNodesHeight(root)
+        print(count)
+        print(height)
+        maxHeight = ceil(log(count + 1, 2))
+
+        return maxHeight == height
+        
+
+# Another approach is to do a dfs over the tree, and checking to see 
+# if the left and right subtrees have a height difference of less than
+# 2, and also check to see if those subtrees are balanced trees.
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+
+        def checkSubtrees(root):
+            if not root: return [True, 0]
+            
+            left = checkSubtrees(root.left)
+            right = checkSubtrees(root.right)
+
+            isBalanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)
+            height = max(left[1], right[1]) + 1
+            
+            return [isBalanced, height] 
+
+        check = checkSubtrees(root)
+
+        return check[0]
