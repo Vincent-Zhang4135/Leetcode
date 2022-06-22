@@ -1,0 +1,39 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+
+# Consider a slow and fast pointer. 
+# Intuition, we know we have a cycle if we visit the same node twice.
+# How can we tell if we visited the same node twice? What if we have a faster
+# pointer that checks ahead? But we cant have a fast pointer that stores all the 
+# nodes it visited because checking all the visited nodes would be expensive
+# How about we smartly take advantage of the fact that if we have a cycle, at some point
+# the fast pointer will LOOP around to meet the slow pointer? Then, we just need to check if 
+# at anytime, the fast pointer equals the slow pointer.
+# If the fast pointer reaches Null, then there is no loop
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow == fast:
+                return True
+
+        return False
+
+# Hashmap 
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        visited = set()
+        while head:
+            if head in visited:
+                return True
+            visited.add(head)
+            head = head.next
+        return False
