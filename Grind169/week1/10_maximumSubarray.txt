@@ -49,7 +49,7 @@ class Solution:
             # Base Case: Only one element
             if (l == h):
                 return arr[l]
-                
+
             m = (l + h) // 2
 
             return max(maxSubArraySum(arr, l, m),
@@ -80,3 +80,8 @@ class Solution:
 
         curr = nums[-1]
         return max(maxSubarray(nums[:len(nums)-1]) + curr, curr)
+
+# testcases
+# [3, 4, -64, 4, 3, 2]
+# [2]
+# [-10, -11, -12, -9]
