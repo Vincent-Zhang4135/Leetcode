@@ -22,7 +22,42 @@ class Solution:
 # Divide and Conquer
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        def 
+        def maxCrossingSum(arr, l, m, h):
+            # Include elements on left of mid.
+            sm = 0
+            left_sum = -10000
+        
+            for i in range(m, l-1, -1):
+                sm = sm + arr[i]
+        
+                if (sm > left_sum):
+                    left_sum = sm
+        
+            # Include elements on right of mid
+            sm = 0
+            right_sum = -1000
+            for i in range(m + 1, h + 1):
+                sm = sm + arr[i]
+        
+                if (sm > right_sum):
+                    right_sum = sm
+  
+            return max(left_sum + right_sum, left_sum, right_sum)
+
+        def maxSubArraySum(arr, l, h):
+        
+            # Base Case: Only one element
+            if (l == h):
+                return arr[l]
+                
+            m = (l + h) // 2
+
+            return max(maxSubArraySum(arr, l, m),
+                    maxSubArraySum(arr, m+1, h),
+                    maxCrossingSum(arr, l, m, h))
+
+        return maxSubArraySum(nums, 0, len(nums) - 1)
+
 
 # Dynamic Programming with Kadane's Algorithm
 class Solution:
@@ -40,11 +75,8 @@ class Solution:
         
 # Another interpretation of DP with Kadane's Algothim
     def maxSubArray(self, nums: List[int]) -> int:
-        maxSum = float('-inf')
-        currSum = 0
-        
-        return max(maxSubarray(nums[:len(nums)-1]) )
+        if len(nums) == 1:
+            return nums[0]
 
-# Two pointer Smart Sliding Window
-class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
+        curr = nums[-1]
+        return max(maxSubarray(nums[:len(nums)-1]) + curr, curr)
