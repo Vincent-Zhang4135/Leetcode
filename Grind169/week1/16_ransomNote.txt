@@ -1,0 +1,32 @@
+import string
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        counts = dict.fromkeys(string.ascii_lowercase(), 0)
+        
+        for char in magazine:
+            counts[char] += 1
+        
+        for char in ransomNote:
+            if counts[char] == 0:
+                return False
+            
+            counts[char] -= 1
+            
+        return True
+
+# what if you dont have access to string.ascii_lowercase? then
+# still take advantage of characters having a number representating:
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        counts = dict.fromkeys([chr(i) for i in range(0 + ord('a'), 26 + ord('a'))], 0)
+
+        for char in magazine:
+            counts[char] += 1
+        
+        for char in ransomNote:
+            if counts[char] == 0:
+                return False
+            
+            counts[char] -= 1
+        
+        return True

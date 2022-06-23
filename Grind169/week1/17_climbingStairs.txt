@@ -1,0 +1,34 @@
+# naive recursion
+class Solution:
+    def climbStairs(self, n: int) => int:
+        if n <= 2:
+            return n
+
+        return self.climbStairs(n - 1) + self.climbStairs(n - 2)
+
+# momoization with DP with constant space
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        # consider that at n - 2 and n - 1, its already 
+        # determined how how many steps are required
+        one = 1
+        two = 1
+        for _ in range(n - 1):
+            tmp = one
+            one += two
+            two = tmp
+        
+        return one
+
+# memoization with DP
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        
+        ans = [0 for _ in range(n)]
+        for i in range(n):
+            if i < 2:
+                ans[i] = i + 1
+            else:
+                ans[i] = ans[i - 1] + ans[i - 2]
+
+        return ans[n - 1]
