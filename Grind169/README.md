@@ -4,6 +4,7 @@
  - maxN = max(maxN, currN) is used a lot
  - dictionarys and hashmaps are your best friend
  - anything that could be done with a factor of O(logn) complexity lends itself to binary/tree indexing
+ - when you come across different conditions, organize how they all fit together and what if statements are needed
 ## Array
  - When you find yourself iterating over an array for a query, consider if you could have optimized that access time from O(n) to O(1) by indexing a hashmap
  - two pointers are often crucial for some of these problems. Some ideas to consider are: pointers at the ends of an array; slow and fast pointers; sliding windows.
