@@ -16,7 +16,7 @@
 
 ## Strings
  - sometimes, consider the ASCII value of the characters of your string
-
+ - ord(char) -> int. chr(int) -> char (converting between ascii and str)
 ## Stacks
  - If you find that there are problems where order matters (i.e. validParenthesis), consider how a stack with a LIFO approach might help
 
@@ -28,6 +28,7 @@
  -  Often there may be DFS, BFS, recursion involved in these problems. When doing these problem, be extremely precise about the base case!
  - BFS are good for level order traversals => know how to implement VFS with queues
  - DFS can be implemented with recursion with base cases that terminates at the NULL
+ - consider a bottom up approach, looking at the base cases (i.e, for height of a tree, look at how you are building up the height of the tree from 0)
 
 ## Recursion
  - BASE CASE IS ESSENTIAL, THEN find the recurrence relation
