@@ -40,6 +40,9 @@
 # How to walkthrough a problem
  - first ask clarifying questions about the problem, and consider edge cases
  - walk through an approach, with overview of the algorthimic paradigm the problem inspires
- - write pseudocode and walk through test cases with them
- - write out the code, being sure to explain particular choices made along the way and the time complexity of the solution
+ - write pseudocode and walk through test cases with them to see if they meet edge cases
+ - write out the code, being sure to explain particular choices made along the way
  - walk through your code with test cases again to be sure it makes sense, and use SIMPLE test cases first because most edge cases can be found with just those
+ - discuss the time complexity of the algorthim
+
+ UMPIRE (Understand(clarify with questions, happy case), Match(match to known pattern, known techniques), Plan(Pseudocode, think of edge cases), Implement(write code), Review(walk through the code like you were debugging), Evaluate(discuss Time/Space complexity).
