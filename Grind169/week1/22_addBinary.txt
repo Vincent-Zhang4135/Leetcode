@@ -1,0 +1,19 @@
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        additional_zeros = "0" * abs(len(a) -len(b))
+        if len(a) > len(b):
+            b = additional_zeros + b
+        else:
+            a = additional_zeros + a
+
+        ret, carryOn = "", 0
+        for i in range(len(a) - 1, -1, -1):
+            numOnes = int(a[i]) + int(b[i]) + carryOn
+
+            ret = str(numOnes % 2) + ret
+            carryOn = numOnes // 2
+        
+        if carryOn:
+            ret = "1" + ret
+        
+        return ret

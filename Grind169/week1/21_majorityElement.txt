@@ -1,0 +1,44 @@
+# O(n) time with hashmap (so O(n) space)
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        instances = {}
+        for num in nums:
+            instances[num] = 1 + instances.get(num, 0)
+        """
+        for key, value in instances.items():
+            if value > len(nums) // 2: return key
+        """
+
+        return max(instances, key=instances.get)
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        instances = {}
+        threshold = len(nums) // 2
+        for num in nums:
+            instances[num] = 1 + instances.get(num, 0)
+            
+            if instances[num] > threshold:
+                return num
+
+# O(n) time but O(1) space Solution
+# the key here is to realize that the majority element will always 
+# have a count that surpasses the count of ALL other elements
+# if we keep track of a number that shows how ahead our current element
+# is compared to all other elements, then it will land on our majority element
+# if by the end the count is positive
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        count = 1
+        ret = nums[0]
+        for num in nums[1:]:
+            if num == ret:
+                count += 1
+            elif count == 0:
+                count += 1
+                ret = num
+            else:
+                count -= 1
+        
+        return ret
+
