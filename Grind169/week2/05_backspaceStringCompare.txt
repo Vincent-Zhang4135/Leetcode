@@ -1,0 +1,25 @@
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        def remvChar(s):
+            if len(s):
+                s = s[:-1]
+                
+            return s
+        
+        actualS = ""
+        actualT = ""
+
+        for char in s:
+            if char == "#":
+                actualS = remvChar(actualS)
+            else:
+                actualS += char
+                
+        for char in t:
+            if char == "#":
+                actualT = remvChar(actualT)
+            else:
+                actualT += char
+                
+        print(actualS, " ", actualT)
+        return actualS == actualT
