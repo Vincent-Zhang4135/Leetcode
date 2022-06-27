@@ -5,10 +5,13 @@
  - dictionarys and hashmaps are your best friend
  - anything that could be done with a factor of O(logn) complexity lends itself to binary/tree indexing
  - when you come across different conditions, organize how they all fit together and what if statements are needed
+ - XOR is a valuable operation to ingrain
 ## Array
  - When you find yourself iterating over an array for a query, consider if you could have optimized that access time from O(n) to O(1) by indexing a hashmap
  - two pointers are often crucial for some of these problems. Some ideas to consider are: pointers at the ends of an array; slow and fast pointers; sliding windows.
  - if two pointers do not work, might also want to consider divide and conquer
+ - sometimes its l < r, sometimes its l <= r. The point is to be deliberate about what the end condition is.
+
 
 ## 2D
  - num_rows == len(grid), then num_cols == len(grid[0]), and then the access item would be grid[row][col]. As long as you keep it consistent, it will work find
@@ -18,10 +21,12 @@
 ## Strings
  - sometimes, consider the ASCII value of the characters of your string
  - ord(char) -> int. chr(int) -> char (converting between ascii and str)
+ - sometimes, consider iterating in the reverse order and see if that makes things easier
 ## Stacks
  - If you find that there are problems where order matters (i.e. validParenthesis), consider how a stack with a LIFO approach might help
 
 ## Linked Lists
+ - slow and fast pointers are common
  - dummy nodes could be an option!
  - dont be afraid to use more than one pointers to keep track of the original position of the head
  - consider base cases, and use small list examples to sanity check them
