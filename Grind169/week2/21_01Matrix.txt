@@ -1,0 +1,34 @@
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        ret = [[None for _ in range(len(mat[0]))] for _ in range(len(mat))]
+        queue = deque()
+
+        # the queue is originally all the squares with 0's
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                if mat[i][j] == 0:
+                    queue.append((i, j))
+        
+        curr = 0
+        while queue:
+            for _ in range(len(queue)):
+                i, j = queue.popleft()
+                if 0 > i or i >= len(mat) or 0 > j or j >= len(mat[0]):
+                    continue
+
+                if ret[i][j] == None:    
+                    ret[i][j] = curr
+                    for dx, dy in directions:
+                        queue.append((i + dx, j + dy))
+
+            curr += 1
+            
+        return ret
+
+[1, 0, 1, 0]
+[0, 1, 1, 1]
+[1, 1, 1, 0]
+            
+

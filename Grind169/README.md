@@ -15,8 +15,9 @@
 
 ## 2D
  - num_rows == len(grid), then num_cols == len(grid[0]), and then the access item would be grid[row][col]. As long as you keep it consistent, it will work find
- - consider out of grid indices
+ - check for out of grid indices
  - one cool thing u can do is directions [[-1, 0], [1, 0], [0, -1], [0, 1]] and then access for directions via for dx, dy in directions
+ - for bfs questions, it may be helpful to store a queue that begins with storing all squares that match a particular starting condition (level order traversal)
 
 ## Strings
  - sometimes, consider the ASCII value of the characters of your string
@@ -42,6 +43,12 @@
 ## DP
  - think in a top down approach. What is the LAST step before the final solution, and what is the relevant subproblem and reccurence relation related to this problem? To better articulate this, consider the sum of an array. Rather than consider a bottom up approach of starting from one index and adding onto the next, assume that you have a subproblem such that the next step would give you the solution. What would that be? That would be the sum of all numbers except the last. The reccurence relation then is sum(array, endIndex) = sum(array, endIndex-1) + array(endIndex) This pattern, we will see, is followed with memoization to remember subproblems that are already solved before, and some way of choosing the corrrect subproblems (often using a max) 
  - a common structure is: max_sum[i] = max(max_sum[i - 1], array[i])
+
+ ## Bits
+ - There are some operations that are a must know
+ - XOR is good for checking if something is repeated an even number of times, or if it is the case that exaclty one of two things is true.
+ - %2 is the same as &1, //2 is the same as >>2. <<2 is the same as *2. 
+ - Just try to be creative with bit manipulation!
 # How to walkthrough a problem
  - first ask clarifying questions about the problem, and consider edge cases
  - walk through an approach, with overview of the algorthimic paradigm the problem inspires
