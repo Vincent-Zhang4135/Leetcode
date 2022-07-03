@@ -1,0 +1,29 @@
+# this doesn't work because it doesn't account for some distances having the same length
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        def distToOrigin(x, y):
+            return sqrt(x**2 + y**2)
+
+        refs = {}
+        tmp = []
+        for i, point in enumerate(points):
+            dist = distToOrigin(point[0], point[1])
+            refs[dist] = i
+            tmp.append(dist)
+
+        tmp.sort()
+
+        return [points[refs[dist]] for dist in tmp[:k]]
+
+# BAD solution
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        def distToOrigin(x, y):
+            return sqrt(x**2 + y**2)
+
+        tmp = [[distToOrigin(x, y), x, y] for x, y in points]
+        tmp.sort()
+
+        return [[x, y] for dist, x, y in tmp[:k]]
+
+# utilize a minheap to get a klogn solution
