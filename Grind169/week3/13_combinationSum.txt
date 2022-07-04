@@ -1,0 +1,41 @@
+# wrong approach: this gets permutations, not unique combintations
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        dp = [[] for _ in range(target + 1)]
+        dp[0] = [[]]
+
+        for i in range(1, len(target + 1)):
+            for candidate in candidates:
+                if (i - candidate >= 0) and dp[i - candidates] != []:
+                    for candidate_sol in dp[i - candidates]:    
+                        curr_sol = candidate_sol.append(candidate)
+                        dp[i].append(curr_sol)
+        
+        return dp[-1]
+
+# recursive dfs with backtracking
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+
+        solutions = []
+        curr_solution = []
+        def dfs(candidates, target):
+            if target == 0:
+                solutions.append(curr_solution.copy())
+                return
+
+            if target < 0 or not candidates:
+                return
+
+            curr_solution.append(candidates[0])
+            dfs(candidates, target - candidates[0])
+            curr_solution.pop()
+
+            dfs(candidates[1:], target)
+
+        dfs(candidates, target)
+        return solutions
+
+6
+[2, 2, 2]
+[2, 3, 4]
