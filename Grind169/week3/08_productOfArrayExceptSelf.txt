@@ -1,0 +1,25 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        ret = [1 for _ in range(len(nums))]
+        # aggregate left products
+        left_agg = 1    
+        for i in range(1, len(nums)):
+            left_agg *= nums[i - 1]
+            ret[i] *= left_agg
+
+        # aggregate right products
+        right_agg = 1
+        for j in range(len(nums) - 2, -1, -1):
+            right_agg *= nums[j + 1]
+            ret[j] *= right_agg
+
+        return ret
+
+
+
+                  [      1 ,       2 ,         3 ,           4 ]
+
+left products     [ [],          [1]        [1, 2]      [1, 2, 3]]
+right products    [ [2, 3, 4],   [3, 4] ,     [4],          []]   
+
+total products    [ 2 * 3 * 4,  1 * 3 * 4, 1 * 2 * 4,  1 * 2 * 3 ]
