@@ -1,0 +1,43 @@
+# approach, use one BST to find the pivot index, 
+# then use another to find the index if it exists
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+
+        while l <= r:
+            m = (l + r) // 2
+            if nums[m] == target:
+                return m
+
+            # if the mid point lies in the left pivot
+            if nums[m] >= nums[l]:
+                # if mid is in the left pivot, and the target is betwween mid
+                # and left, then we can set the new right to mid
+                if nums[l] <= target <= nums[m]:
+                    r = m - 1
+                # otherwise, we can set mid to be where l was originally
+                else:
+                    l = m + 1
+
+            # if the mid point lies in the right pivot
+            if nums[m] <= nums[r]:
+                # if mid is in the right pivot, and the target is between mid
+                # and right, then we can set the new left to mid
+                if nums[r] >= target >= nums[m]:
+                    l = m + 1
+                # otherwise, we can set mid to be where r was originally
+                else:
+                    r = m - 1
+        
+        return -1
+
+rotated on 4
+[0, 1, 3, 4, 5, 6, 7]
+[5, 6, 7, 0, 1, 3, 4]
+
+4
+
+
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[3, 4, 5, 6, 7, 8, 9, 0, 1, 2]
+[8, 9, 0, 1, 2, 3, 4, 5, 6, 7]
