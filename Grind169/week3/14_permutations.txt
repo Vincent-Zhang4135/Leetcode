@@ -1,0 +1,41 @@
+# iterative
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        perms = [[nums[0]]]
+        for i in range(1, len(nums)):
+            tmp = []
+            for perm in perms:
+                for j in range(len(perm) + 1):
+                    cpy = perm.copy()
+                    cpy.insert(j, nums[i])
+                    tmp.append(cpy)
+            perms = tmp
+
+        return perms
+
+# recursive backtracking
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+
+        solutions = []
+        sol = []
+        def dfs(nums):
+            if not nums:
+                solutions.append(sol.copy())
+                return
+
+            for i in range(len(nums)):
+                sol.append(nums[i])
+                dfs(nums[:i] + nums[i+1:])
+                sol.pop()
+
+        dfs(nums)
+        return solutions
+      V
+1, 2, 3
+
+perms
+[[1,2],[2,1]]
+
+tmp
+[]
