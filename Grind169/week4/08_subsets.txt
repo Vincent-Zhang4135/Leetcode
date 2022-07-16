@@ -1,0 +1,27 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
+        for num in nums:
+            tmp = res.copy()
+            for sol in res:
+                tmp.append(sol + [num])
+            res = tmp
+
+        return res
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ret = []
+        sol = []
+        def dfs(i): 
+            if i == len(nums):
+                ret.append(sol.copy())
+                return
+            
+            dfs(i + 1)
+            sol.append(nums[i])
+            dfs(i + 1)
+            sol.pop()
+            
+        dfs(0)
+        return ret
