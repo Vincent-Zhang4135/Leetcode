@@ -62,6 +62,7 @@
  - common subproblems is that in order to solve something of length n, you need to solve something of length i
  - there are bottom up and top down approaches. Just do what you are comfortable with
  - I think for me, thinking about what the subproblem before the final solution, and what is the step to get to that final solution, and thinking about the minimal subproblem (sort of like base case) can really help solidify the understanding of the DP approach
+ - i think sometimes combintations can be dp
 
  ## Bits
  - There are some operations that are a must know
