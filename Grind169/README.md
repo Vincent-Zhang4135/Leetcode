@@ -46,6 +46,8 @@
  - want to use graphs when there are relationship between objects
  - want to use directed graph when there is a relationship that can go both ways
  - know how to do a topological sort, and what that means. Namely, if and only if there exists a topological sorting, is there there are no directed cycles. 
+ - Using defaultdict(set) is gold for graphs, as it also enables you to easily add nodes to nodes that don't yet exist because default dict will enable you to simply do new_node.add(some_node)
+ - also, having a visited set of nodes during dfs is a must. Sometimes it could also be useful to have an additional DS for storing some info about each node (dict)
 
 ## Recursion
  - BASE CASE IS ESSENTIAL, THEN find the recurrence relation

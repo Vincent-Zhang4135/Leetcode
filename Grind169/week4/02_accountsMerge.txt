@@ -1,1 +1,56 @@
-f
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        graph = defaultdict(set)
+        emails= {}
+        for account in accounts:
+            user = account[0]
+            emails[account[1]] = user
+            for email in account[2:]:
+                emails[email] = user
+                graph[account[1]].add(email)
+                graph[email].add(account[1])
+
+        visited = set()
+        res = []
+        
+        def dfs():
+            for email in emails:
+                if email not in visited:
+                    stack = [email]
+                    visited.add(email)
+                    curr_emails = []
+
+                    while stack:
+                        curr = stack.pop()
+                        curr_emails.append(curr)
+
+                        for neighbor in graph[curr]:
+                            if neighbor not in visited:
+                                stack.append(neighbor)
+                                visited.add(neighbor)
+                    res.append([emails[email]] + sorted(curr_emails))
+
+        dfs()
+        return res
+{
+    "js": {"jny", "j0"}
+    "mry": {}
+}
+
+{
+    "js" : "John"
+    "
+}
+
+
+
+{
+    node: [nodes]
+    ...
+}
+
+{
+    email: account user
+}
+
+dfs through the nodes until all nodes are visited and add them to the set
