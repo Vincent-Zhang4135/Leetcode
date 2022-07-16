@@ -1,0 +1,98 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        right_bound = len(matrix[0]) - 1
+        lower_bound = len(matrix) - 1
+        left_bound = 0
+        upper_bound = 0
+
+        bounds = [right_bound, lower_bound, left_bound, upper_bound]
+        directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+
+        def check_edge_bound(i, j, bound_ind):
+            if curr_bound_ind == 0 or curr_bound_ind == 2:
+                return j == bounds[bound_ind]
+            elif curr_bound_ind == 1 or curr_bound_ind == 3:
+                return i == bounds[bound_ind]
+
+        def shrink_bound(bound_ind):
+            if bound_ind == 0 or bound_ind == 1:
+                bounds[bound_ind] -= 1
+            elif bound_ind == 2 or bound_ind == 3:
+                bounds[bound_ind] += 1
+
+        res = []
+        curr_bound_ind = 0
+        i, j = 0, 0
+        if check_edge_bound(i, j, curr_bound_ind):
+            shrink_bound((curr_bound_ind + 3) % 4)
+            curr_bound_ind = (curr_bound_ind + 1) % 4
+        while not check_edge_bound(i, j, curr_bound_ind):
+            res.append(matrix[i][j])
+            row, col = directions[curr_bound_ind]
+            i += row
+            j += col
+
+            if check_edge_bound(i, j, curr_bound_ind):
+                shrink_bound((curr_bound_ind + 3) % 4)
+                curr_bound_ind = (curr_bound_ind + 1) % 4
+
+        res.append(matrix[i][j])
+        return res
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        left, top = 0, 0
+        right, bottom = len(matrix[0]), len(matrix)
+        res = []
+        while left < right and top < bottom:
+            for i in range(left, right):
+                res.append(matrix[top][i])
+            top += 1
+
+            for i in range(top, bottom):
+                res.append(matrix[i][right - 1])
+            right -= 1
+
+            if not (left < right and top < bottom):
+                break
+
+            for i in range(right - 1, left - 1, -1):
+                res.append(matrix[bottom - 1][i])
+            bottom -= 1
+
+            for i in range(bottom - 1, top - 1, -1):
+                res.append(matrix[i][left])
+            left += 1
+
+        return res
+
+
+ 
+    j  0  1  2  3  4
+ i
+ 0   [ _, _, _, _, _]
+ 1   [ _, _, _, _, _]       
+ 2   [ _, _, _, _, _]
+ 3   [ _, _, _, _, _]
+
+
+0,0
+0,1
+0,2
+0,3
+0,4
+1,4
+2,4
+3,4
+3,3
+3,2
+3,1
+3,0
+2,0
+1,0
+1,1
+1,2
+1,3
+2,3
+2,2
+2,1
