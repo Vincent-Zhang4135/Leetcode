@@ -1,0 +1,47 @@
+class TimeMap:
+    def __init__(self):
+        self.hash = {}        
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.hash[key] = self.hash.get(key,[])
+        self.hash[key].append([value, timestamp])
+        
+    def get(self, key: str, timestamp: int) -> str:
+        pairs = self.hash.get(key, [])
+        res = ""
+        l, r = 0, len(pairs) - 1
+
+        while l <= r:
+            m = (l + r) // 2
+            val, ts = pairs[m]
+            if ts == timestamp:
+                return val
+            elif timestamp > ts:
+                res = val
+                l = m + 1
+            else: # if timestamp < ts
+                r = m - 1
+
+        return res
+
+        '''
+        using O(n) solution
+          for val, ts in self.hash[key][::-1]:
+            # print(pair)
+            if timestamp >= ts:
+                return val
+
+        
+        return ""
+        '''
+ 
+
+                  3
+l = 0
+r = 0                
+m = 1
+
+
+                V
+             ||;lgqng
+["a", 1], ["c", 4], ["d", 6]
