@@ -1,0 +1,58 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        
+        def dfs(preorder, inorder):
+            if inorder == []: return None 
+            root_val = preorder[0]
+
+            for i in range(len(inorder)):
+                if inorder[i] == root_val:
+                    partition = i
+                    break
+
+            root = TreeNode(root_val)
+            root.left = dfs(preorder[1:partition + 1], inorder[:partition])
+            root.right = dfs(preorder[partition + 1:], inorder[partition + 1:])
+            return root
+
+        return dfs(preorder, inorder)
+
+
+
+
+
+        1
+    2       3
+4         5    6
+
+preorder
+[1, 2, 4, 3, 5, 6]
+[4, 2, 1, 5, 3, 6]
+inorder
+
+preorder
+[2, 4]   [3, 5, 6]
+[4, 2]   [5, 3, 6]
+inorder
+
+preorder
+[4]  []
+[4]  []
+inorder
+
+preorder
+[]
+[]
+
+
+
+preorder
+[4]
+[4]
+inorder
