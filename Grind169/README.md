@@ -12,6 +12,7 @@
  - two pointers are often crucial for some of these problems. Some ideas to consider are: pointers at the ends of an array; slow and fast pointers; sliding windows.
  - if two pointers do not work, might also want to consider divide and conquer
  - sometimes its l < r, sometimes its l <= r. The point is to be deliberate about what the end condition is.
+ - this is niche, but sometimes, mapping the numbers inside the array onto as the indices of the array can be powerful ( can lead to a cyclic graph)
 
 
 ## 2D
