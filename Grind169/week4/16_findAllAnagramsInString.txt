@@ -1,0 +1,26 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        if len(s) < len(p): return res
+        
+        anagram, curr = {}, {}
+        for i in range(len(p)):
+            anagram[p[i]] = 1 + anagram.get(p[i], 0)
+            curr[s[i]] = 1 + curr.get(s[i], 0)
+
+        if curr == anagram: res.append(0)
+
+        l = 0
+        for r in range(len(p), len(s)):
+            curr[s[r]] = 1 + curr.get(s[r], 0)
+            curr[s[l]] -= 1
+
+            if curr[s[l]] == 0:
+                del curr[s[l]]
+
+            if curr == anagram:
+                res.append(l + 1)
+
+            l += 1
+
+        return res

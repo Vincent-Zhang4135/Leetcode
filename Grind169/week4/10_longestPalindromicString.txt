@@ -1,0 +1,64 @@
+# DP solution
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        dp = [[False for _ in range(len(s))] for _ in range(len(s))]
+        maxSub = s[0]
+
+        for i in range(len(s) - 1):
+            dp[i][i] = True
+            dp[i][i + 1] = (s[i] == s[i + 1])
+            if dp[i][i + 1]: maxSub = s[i:i + 2]
+        
+        for start in range(2, len(s)):
+            for end in range(start + 2, len(s)):
+                dp[start][end] = dp[start + 1][end - 1] and s[start] == s[end]
+
+                if dp[start][end]:
+                    maxSub = s[start:end + 1]
+        return maxSub
+
+# sliding window solution
+class Solution:
+    def longestPalindrome(self, s:str) -> str:
+        maxS = ""
+        maxLength = 0
+
+        for index in range(len(s)):
+            i, j = index
+            while i >= 0 and j < len(s) and s[i] == s[j]:
+                if j - i + 1 > maxLength:
+                    maxS = s[i: j + 1]
+                    maxLength = j - i + 1
+
+                i -= 1
+                j += 1
+
+            i, j = index, index + 1
+            while i >= 0 and j < len(s) and s[i] == s[j]:
+                if j - i + 1 > maxLength:
+                    maxS = s[i: j + 1]
+                    maxLength = j - i + 1
+
+                i -= 1
+                j += 1
+
+        return maxS
+    [     0  1  2  3  4  5
+str 0    [T, F, _, _, _, _],
+    1    [_, T, T, _, _, _],
+    2    [_, _, T, F, _, _],
+    3    [_, _, _, T, F, _],
+    4    [_, _, _, _, T, F],
+    5    [_, _, _, _, _, T],
+    ]
+ 
+    [start] ---- [end]
+[start + 1] --- [end - 1] 
+
+
+     dp[start - 1][end + 1] = dp[start][end] and s[start - 1] == s[end + 1]
+"
+012345
+abbade"
+
+  "cabac"

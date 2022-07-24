@@ -20,7 +20,7 @@
  - one cool thing u can do is directions [[-1, 0], [1, 0], [0, -1], [0, 1]] and then access for directions via for dx, dy in directions
  - for bfs questions, it may be helpful to store a queue that begins with storing all squares that match a particular starting condition (level order traversal)
  - when it comes to matrix, don't be afraid to change the values in the matrix if you visit those squares, and see if that can help you
-
+ - one way to iterate in a type toplogical order for triangle in 2d arrays that might be useful is to iterate the rows in negative order, and iterate the cols in positive order starting at the row index
 ## Strings
  - sometimes, consider the ASCII value of the characters of your string
  - ord(char) -> int. chr(int) -> char (converting between ascii and str)
@@ -56,6 +56,7 @@
  - for backtracking, you probably only need to do the pop/append once each. One before the recursive call and one after the recursive call.
  - also, remember to make copies of stuff since you are backtracking
  - permutations or combinations, think backtracking
+ - if you need to keep track a visited set, see if u can take advantage by modifying the original object with "#"s
 ## DP
  - think in a top down approach. What is the LAST step before the final solution, and what is the relevant subproblem and reccurence relation related to this problem? To better articulate this, consider the sum of an array. Rather than consider a bottom up approach of starting from one index and adding onto the next, assume that you have a subproblem such that the next step would give you the solution. What would that be? That would be the sum of all numbers except the last. The reccurence relation then is sum(array, endIndex) = sum(array, endIndex-1) + array(endIndex) This pattern, we will see, is followed with memoization to remember subproblems that are already solved before, and some way of choosing the corrrect subproblems (often using a max) 
  - a common structure is: max_sum[i] = max(max_sum[i - 1], array[i])

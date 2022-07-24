@@ -1,0 +1,32 @@
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        mapping = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
+
+        solutions = []
+        global sol
+        sol = ""
+        def dfs(i):
+            global sol
+            if i == len(digits):
+                solutions.append(sol)
+                return
+            
+            for char in mapping[digits[i]]:
+                sol += char
+                dfs(i + 1)
+                sol = sol[:-1]
+        
+        if digits: dfs(0) 
+        else: return []
+
+        return solutions
+            
