@@ -1,0 +1,17 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        dp = [0] * (len(nums) + 2)
+        dp[0] = 0
+        dp[1] = 0
+        for i in range(len(nums)):
+            dp[i + 2] = max(nums[i] + dp[i], dp[i + 1])
+        return dp[len(nums) + 1]
+    
+'''    
+dp:
+0  1  2  3  4  5  6 
+0  0  2  7  11 11 12
+nums: 0  1  2  3  4
+     [2, 7, 9, 3, 1]
+    
+'''
