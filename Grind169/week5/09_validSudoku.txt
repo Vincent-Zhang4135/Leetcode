@@ -1,0 +1,25 @@
+import itertools
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        for r in range(9):
+            seenRow = set()
+            seenCol = set()
+            for c in range(9):
+                if board[r][c] in seenRow and board[r][c] != ".":
+                    return False
+                if board[c][r] in seenCol and board[c][r] != ".":
+                    return False
+                seenRow.add(board[r][c])
+                seenCol.add(board[c][r])
+
+        for r, c in itertools.product(["0", "3", "6"], repeat=2):
+            r, c = int(r), int(c)
+            seen = set()
+            for i in range(3):
+                for j in range(3):
+                    if board[r + i][c + j] in seen and board[r + i][c + j] != ".":
+                        return False
+                    seen.add(board[r + i][c + j])
+
+        return True
