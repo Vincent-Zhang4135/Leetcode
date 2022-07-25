@@ -13,6 +13,7 @@
  - if two pointers do not work, might also want to consider divide and conquer
  - sometimes its l < r, sometimes its l <= r. The point is to be deliberate about what the end condition is.
  - this is niche, but sometimes, mapping the numbers inside the array onto as the indices of the array can be powerful ( can lead to a cyclic graph)
+ - if you find yourself having to iterate the same amount of times for two different tasks, see if u can nest it in the same for loop
 
 
 ## 2D
